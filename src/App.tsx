@@ -86,7 +86,7 @@ function Hero() {
           initial={{ x: -80, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="relative h-[60vh] lg:h-screen"
+          className="relative h-[70vh] lg:h-screen"
         >
           <img
             src={heroPortrait}
@@ -98,7 +98,7 @@ function Hero() {
         </motion.div>
 
         {/* RIGHT CONTENT */}
-        <div className="relative flex items-center px-8 lg:px-16 py-20 lg:py-0">
+        <div className="relative flex items-center px-8 lg:px-16 py-16 lg:py-0 -mt-20 lg:mt-0">
           <div className="max-w-xl">
 
             <motion.h1
@@ -246,6 +246,81 @@ function CreativeStack() {
             </p>
           </motion.div>
         ))}
+      </div>
+    </section>
+  );
+}
+function FeaturedWork() {
+  const cards = [
+    {
+      title: "Cinematic Edit",
+      tag: "Cinematic",
+      video: cinematicVideo,
+    },
+    {
+      title: "Travel Film",
+      tag: "Travel",
+      video: travelVideo,
+    },
+    {
+      title: "YouTube Video",
+      tag: "YouTube",
+      video: youtubeVideo,
+    },
+    {
+      title: "Instagram Reel",
+      tag: "Reels",
+      video: reelVideo,
+    },
+    {
+      title: "Commercial Ad",
+      tag: "Commercial",
+      video: commercialVideo,
+    },
+  ];
+
+  return (
+    <section
+      id="work"
+      className="w-full py-24 overflow-hidden"
+    >
+      <div className="px-6 lg:px-10">
+        <div className="flex items-end justify-between">
+          <motion.div {...fadeUp}>
+            <SectionTitle accent="Work">
+              Featured
+            </SectionTitle>
+          </motion.div>
+        </div>
+      </div>
+
+      <div className="mt-12 overflow-hidden border border-border">
+        <div className="marquee-track gap-0">
+          {[...cards, ...cards].map((c, i) => (
+            <div
+              key={`${c.title}-${i}`}
+              className="w-[350px] shrink-0"
+            >
+              <div className="overflow-hidden bg-card border-r border-border last:border-r-0">
+                <div className="relative aspect-video overflow-hidden">
+                  <video
+                    src={c.video}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    className="w-full h-full object-cover pointer-events-none"
+                  />
+                </div>
+              </div>
+
+            
+
+                
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -463,89 +538,7 @@ function Block({ title, lines }: { title: string; lines: string[] }) {
   );
 }
 
-function FeaturedWork() {
-  const cards = [
-    {
-      title: "Cinematic Edit",
-      tag: "Cinematic",
-      video: cinematicVideo,
-    },
-    {
-      title: "Travel Film",
-      tag: "Travel",
-      video: travelVideo,
-    },
-    {
-      title: "YouTube Video",
-      tag: "YouTube",
-      video: youtubeVideo,
-    },
-    {
-      title: "Instagram Reel",
-      tag: "Reels",
-      video: reelVideo,
-    },
-    {
-      title: "Commercial Ad",
-      tag: "Commercial",
-      video: commercialVideo,
-    },
-  ];
 
-  return (
-    <section
-      id="work"
-      className="w-full py-24 overflow-hidden"
-    >
-      <div className="px-6 lg:px-10">
-        <div className="flex items-end justify-between">
-          <motion.div {...fadeUp}>
-            <SectionTitle accent="Work">
-              Featured
-            </SectionTitle>
-          </motion.div>
-
-          <a
-            href="#"
-            className="text-sm text-white hover:text-primary flex items-center gap-2"
-          >
-            View All Projects
-            <ArrowRight size={16} />
-          </a>
-        </div>
-      </div>
-
-      <div className="mt-12 overflow-hidden border border-border">
-        <div className="marquee-track gap-0">
-          {[...cards, ...cards].map((c, i) => (
-            <div
-              key={`${c.title}-${i}`}
-              className="w-[350px] shrink-0"
-            >
-              <div className="overflow-hidden bg-card border-r border-border last:border-r-0">
-                <div className="relative aspect-video overflow-hidden">
-                  <video
-                    src={c.video}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    className="w-full h-full object-cover pointer-events-none"
-                  />
-                </div>
-              </div>
-
-            
-
-                
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 function Contact() {
   return (
     <section
@@ -664,9 +657,9 @@ function App() {
       <Navbar />
       <main className="pt-16">
         <Hero />
+        <FeaturedWork />
         <CreativeStack />
         <About />
-        <FeaturedWork />
         <Contact />
       </main>
     </div>
